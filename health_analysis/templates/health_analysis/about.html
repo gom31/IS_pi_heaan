@@ -1,0 +1,138 @@
+{% extends 'health_analysis/base.html' %}
+
+{% block title %}서비스 소개 - SSH{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <h1 class="text-center mb-5">SSH - SecureSexHealth</h1>
+            
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h3 class="card-title">🎯 서비스 목적</h3>
+                    <p class="card-text">
+                        SSH는 성적 건강이라는 민감한 주제에 대해 완전한 익명성을 보장하면서 
+                        개인 맞춤형 위험도 평가를 제공하는 혁신적인 서비스입니다. 
+                        사회적 편견이나 개인정보 노출에 대한 우려 없이 
+                        자신의 건강 상태를 객관적으로 파악할 수 있습니다.
+                    </p>
+                </div>
+            </div>
+
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h3 class="card-title">🔒 동형암호 기술</h3>
+                    <p class="card-text">
+                        동형암호(Homomorphic Encryption)는 데이터를 암호화한 상태에서도 
+                        연산을 수행할 수 있는 혁신적인 암호화 기술입니다.
+                    </p>
+                    
+                    <div class="row mt-3">
+                        <div class="col-md-4 text-center">
+                            <i class="fas fa-upload fa-2x text-primary mb-2"></i>
+                            <h6>1. 암호화 전송</h6>
+                            <small>사용자 데이터가 즉시 암호화되어 서버로 전송</small>
+                        </div>
+                        <div class="col-md-4 text-center">
+                            <i class="fas fa-calculator fa-2x text-success mb-2"></i>
+                            <h6>2. 암호화 연산</h6>
+                            <small>암호화된 상태에서 AI 모델이 위험도 계산</small>
+                        </div>
+                        <div class="col-md-4 text-center">
+                            <i class="fas fa-download fa-2x text-info mb-2"></i>
+                            <h6>3. 결과 복호화</h6>
+                            <small>사용자만이 최종 결과를 복호화하여 확인</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h3 class="card-title">🤖 AI 모델 정보</h3>
+                    <p class="card-text">
+                        SSH는 HIV/AIDS 관련 데이터셋을 기반으로 훈련된 
+                        로지스틱 회귀 모델을 사용합니다.
+                    </p>
+                    
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <strong>입력 특성:</strong> 19개의 성적 건강 관련 요인
+                        </li>
+                        <li class="list-group-item">
+                            <strong>모델 타입:</strong> 로지스틱 회귀 (Logistic Regression)
+                        </li>
+                        <li class="list-group-item">
+                            <strong>훈련 데이터:</strong> 익명화된 공개 HIV/AIDS 데이터셋
+                        </li>
+                        <li class="list-group-item">
+                            <strong>예측 대상:</strong> HIV/AIDS 감염 위험도 확률
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h3 class="card-title">🛡️ 개인정보 보호</h3>
+                    
+                    <div class="alert alert-success">
+                        <h6><i class="fas fa-check-circle"></i> 보장되는 사항</h6>
+                        <ul class="mb-0">
+                            <li>모든 데이터는 클라이언트에서 즉시 암호화</li>
+                            <li>서버는 암호화된 데이터만 처리</li>
+                            <li>개인 식별 정보 일체 수집 안 함</li>
+                            <li>IP 주소, 쿠키 등 추적 정보 저장 안 함</li>
+                            <li>완전한 익명 세션으로 운영</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="alert alert-info">
+                        <h6><i class="fas fa-info-circle"></i> 기술적 보호조치</h6>
+                        <ul class="mb-0">
+                            <li>CKKS 동형암호 알고리즘 사용</li>
+                            <li>클라이언트 측 키 관리</li>
+                            <li>HTTPS 통신 암호화</li>
+                            <li>서버 측 데이터 미저장</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h3 class="card-title">⚠️ 중요한 제한사항</h3>
+                    
+                    <div class="alert alert-warning">
+                        <h6><i class="fas fa-exclamation-triangle"></i> 반드시 숙지하세요</h6>
+                        <ul class="mb-0">
+                            <li><strong>참고용 결과:</strong> 이 평가는 참고용이며 의학적 진단이 아닙니다</li>
+                            <li><strong>전문의 상담 필수:</strong> 정확한 진단은 반드시 의료진과 상담하세요</li>
+                            <li><strong>교육 목적:</strong> 이 시스템은 교육 및 연구 목적으로 개발되었습니다</li>
+                            <li><strong>완벽하지 않음:</strong> AI 모델의 예측에는 오차가 있을 수 있습니다</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title">🎓 개발 배경</h3>
+                    <p class="card-text">
+                        이 프로젝트는 동형암호를 이용한 프라이버시 보호 애플리케이션 개발을 위한 
+                        학술 연구 프로젝트입니다. 성적 건강이라는 민감한 주제를 통해 
+                        동형암호 기술의 실용적 활용 가능성을 탐구하고 있습니다.
+                    </p>
+                    
+                    <div class="text-center mt-4">
+                        <a href="{% url 'health_analysis:home' %}" class="btn btn-primary">
+                            평가 시작하기
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

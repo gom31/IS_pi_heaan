@@ -1,0 +1,543 @@
+<!-- templates/health_analysis/index.html -->
+{% extends 'health_analysis/base.html' %}
+
+{% block content %}
+<!-- 히어로 섹션 -->
+<section class="hero-section">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h1 class="display-4 fw-bold mb-4">
+                    익명 성적 건강 평가
+                </h1>
+                <p class="lead mb-4">
+                    동형암호 기술을 사용하여 개인정보를 완전히 보호하면서 
+                    성적 건강 위험도를 평가해드립니다.
+                </p>
+                <div class="d-flex align-items-center">
+                    <button class="btn btn-light btn-lg me-3" onclick="startAssessment()" id="startButton">
+                        평가 시작하기
+                    </button>
+                    <small class="text-light">
+                        🔒 완전 익명 · 데이터 암호화
+                    </small>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="text-center">
+                    <div class="bg-white p-4 rounded shadow">
+                        <h4 class="text-dark">보안 기술</h4>
+                        <p class="text-muted">동형암호 (Homomorphic Encryption)</p>
+                        <div class="row text-center">
+                            <div class="col-4">
+                                <div class="text-primary">
+                                    <i class="fas fa-lock fa-2x"></i>
+                                    <p class="mt-2 small">암호화</p>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="text-success">
+                                    <i class="fas fa-calculator fa-2x"></i>
+                                    <p class="mt-2 small">연산</p>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="text-info">
+                                    <i class="fas fa-user-secret fa-2x"></i>
+                                    <p class="mt-2 small">익명성</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 평가 폼 섹션 -->
+<section class="py-5">
+    <div class="container">
+        <div id="assessmentForm" style="display: none;">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="form-section">
+                        <h2 class="text-center mb-4">성적 건강 위험도 평가</h2>
+                        <p class="text-center text-muted mb-4">
+                            모든 정보는 암호화되어 처리되며, 개인을 식별할 수 있는 데이터는 저장되지 않습니다.
+                        </p>
+                        
+                        <form id="healthForm">
+                            <!-- 기본 정보 섹션 -->
+                            <div class="card mb-4">
+                                <div class="card-header bg-primary text-white">
+                                    <h5 class="mb-0">기본 정보</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="sex" class="form-label">성별 *</label>
+                                            <select class="form-select" id="sex" name="sex" required>
+                                                <option value="">선택하세요</option>
+                                                <option value="0">여성</option>
+                                                <option value="1">남성</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="age" class="form-label">연령대 *</label>
+                                            <select class="form-select" id="age" name="age" required>
+                                                <option value="">선택하세요</option>
+                                                <option value="1">15-19세</option>
+                                                <option value="2">20-24세</option>
+                                                <option value="3">25-29세</option>
+                                                <option value="4">30-34세</option>
+                                                <option value="5">35-39세</option>
+                                                <option value="6">40-44세</option>
+                                                <option value="7">45-49세</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="edu_lvl" class="form-label">교육 수준 *</label>
+                                            <select class="form-select" id="edu_lvl" name="edu_lvl" required>
+                                                <option value="">선택하세요</option>
+                                                <option value="0">무학</option>
+                                                <option value="1">초등학교</option>
+                                                <option value="2">중고등학교</option>
+                                                <option value="3">대학교 이상</option>
+                                                <option value="4">기타</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 성적 활동 섹션 -->
+                            <div class="card mb-4">
+                                <div class="card-header bg-info text-white">
+                                    <h5 class="mb-0">성적 활동 관련</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="had_sex" class="form-label">성경험 *</label>
+                                            <select class="form-select" id="had_sex" name="had_sex" required>
+                                                <option value="">선택하세요</option>
+                                                <option value="0">없음</option>
+                                                <option value="1">있음</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="n_s_part" class="form-label">평생 성관계 파트너 수 *</label>
+                                            <input type="number" class="form-control" id="n_s_part" name="n_s_part" 
+                                                   min="0" max="100" value="0" required>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="con_use" class="form-label">콘돔 사용 경험 *</label>
+                                            <select class="form-select" id="con_use" name="con_use" required>
+                                                <option value="">선택하세요</option>
+                                                <option value="0">없음</option>
+                                                <option value="1">있음</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="r_use_con" class="form-label">최근 성관계시 콘돔 사용 *</label>
+                                            <select class="form-select" id="r_use_con" name="r_use_con" required>
+                                                <option value="">선택하세요</option>
+                                                <option value="0">사용하지 않음</option>
+                                                <option value="1">사용함</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 최근 활동 섹션 -->
+                            <div class="card mb-4">
+                                <div class="card-header bg-warning text-dark">
+                                    <h5 class="mb-0">최근 12개월 활동</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-4 mb-3">
+                                            <label for="r_sea" class="form-label">성관계 활동 *</label>
+                                            <select class="form-select" id="r_sea" name="r_sea" required>
+                                                <option value="">선택하세요</option>
+                                                <option value="0">없음</option>
+                                                <option value="1">있음</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-4 mb-3">
+                                            <label for="r_have_1sp" class="form-label">한 명의 파트너와만 관계 *</label>
+                                            <select class="form-select" id="r_have_1sp" name="r_have_1sp" required>
+                                                <option value="">선택하세요</option>
+                                                <option value="0">아니오</option>
+                                                <option value="1">예</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-4 mb-3">
+                                            <label for="r_nhave_sex" class="form-label">성관계 전혀 없음 *</label>
+                                            <select class="form-select" id="r_nhave_sex" name="r_nhave_sex" required>
+                                                <option value="">선택하세요</option>
+                                                <option value="0">아니오</option>
+                                                <option value="1">예</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 지식 및 인식 섹션 -->
+                            <div class="card mb-4">
+                                <div class="card-header bg-success text-white">
+                                    <h5 class="mb-0">건강 지식 및 인식</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="hiv_mosq" class="form-label">HIV가 모기를 통해 전파된다고 생각하는가 *</label>
+                                            <select class="form-select" id="hiv_mosq" name="hiv_mosq" required>
+                                                <option value="">선택하세요</option>
+                                                <option value="0">아니오</option>
+                                                <option value="1">예</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="h_sti" class="form-label">STI에 대해 들어본 적이 있는가 *</label>
+                                            <select class="form-select" id="h_sti" name="h_sti" required>
+                                                <option value="">선택하세요</option>
+                                                <option value="0">없음</option>
+                                                <option value="1">있음</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="h_o_sti" class="form-label">기타 STI에 대해 들어본 적이 있는가 *</label>
+                                            <select class="form-select" id="h_o_sti" name="h_o_sti" required>
+                                                <option value="">선택하세요</option>
+                                                <option value="0">없음</option>
+                                                <option value="1">있음</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 검사 관련 섹션 -->
+                            <div class="card mb-4">
+                                <div class="card-header bg-secondary text-white">
+                                    <h5 class="mb-0">검사 관련</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="e_t_hiv" class="form-label">HIV 검사를 받은 적이 있는가 *</label>
+                                            <select class="form-select" id="e_t_hiv" name="e_t_hiv" required>
+                                                <option value="">선택하세요</option>
+                                                <option value="0">없음</option>
+                                                <option value="1">있음</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="p_t_hiv" class="form-label">HIV 검사받을 곳을 알고 있는가 *</label>
+                                            <select class="form-select" id="p_t_hiv" name="p_t_hiv" required>
+                                                <option value="">선택하세요</option>
+                                                <option value="0">모름</option>
+                                                <option value="1">알고 있음</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-4 mb-3">
+                                            <label for="s_test" class="form-label">샘플 검사 결과 *</label>
+                                            <select class="form-select" id="s_test" name="s_test" required>
+                                                <option value="">선택하세요</option>
+                                                <option value="0">음성</option>
+                                                <option value="1">양성</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-4 mb-3">
+                                            <label for="t_in_lab" class="form-label">실험실에서 검사 받음 *</label>
+                                            <select class="form-select" id="t_in_lab" name="t_in_lab" required>
+                                                <option value="">선택하세요</option>
+                                                <option value="0">아니오</option>
+                                                <option value="1">예</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-4 mb-3">
+                                            <label for="f_t_resu" class="form-label">최종 검사 결과 *</label>
+                                            <select class="form-select" id="f_t_resu" name="f_t_resu" required>
+                                                <option value="">선택하세요</option>
+                                                <option value="0">음성</option>
+                                                <option value="1">양성</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 제출 버튼 -->
+                            <div class="text-center">
+                                <div class="loading-spinner" id="loadingSpinner">
+                                    <div class="spinner-border text-primary" role="status">
+                                        <span class="visually-hidden">분석 중...</span>
+                                    </div>
+                                    <p class="mt-2">동형암호로 안전하게 분석 중...</p>
+                                </div>
+                                
+                                <button type="submit" class="btn btn-primary btn-lg" id="submitBtn">
+                                    <i class="fas fa-lock"></i> 익명 분석 시작
+                                </button>
+                                
+                                <p class="text-muted mt-3 small">
+                                    * 모든 데이터는 동형암호로 보호되며 개인정보는 저장되지 않습니다.
+                                </p>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 결과 표시 영역 -->
+        <div id="resultSection" style="display: none;">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="result-card" id="resultCard">
+                        <!-- 결과가 여기에 동적으로 추가됩니다 -->
+                    </div>
+                    
+                    <div class="text-center mt-4">
+                        <button class="btn btn-outline-primary" onclick="resetForm()">
+                            다시 평가하기
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 서비스 소개 섹션 -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <i class="fas fa-shield-alt fa-3x text-primary mb-3"></i>
+                        <h5>완전한 익명성</h5>
+                        <p>개인을 식별할 수 있는 어떤 정보도 수집하지 않습니다.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <i class="fas fa-lock fa-3x text-success mb-3"></i>
+                        <h5>동형암호 기술</h5>
+                        <p>데이터를 암호화한 상태에서도 분석이 가능한 최신 기술입니다.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <i class="fas fa-heartbeat fa-3x text-danger mb-3"></i>
+                        <h5>건강 정보 제공</h5>
+                        <p>과학적 근거에 기반한 개인 맞춤형 건강 정보를 제공합니다.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // DOM이 로드된 후 실행
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('DOM loaded, initializing page...');
+        
+        // 버튼 이벤트 확인
+        const startButton = document.getElementById('startButton');
+        if (startButton) {
+            console.log('Start button found');
+        } else {
+            console.error('Start button not found!');
+        }
+        
+        // 폼 요소 확인
+        const assessmentForm = document.getElementById('assessmentForm');
+        if (assessmentForm) {
+            console.log('Assessment form found');
+        } else {
+            console.error('Assessment form not found!');
+        }
+    });
+
+    function startAssessment() {
+        console.log('startAssessment called');
+        
+        const assessmentForm = document.getElementById('assessmentForm');
+        if (assessmentForm) {
+            assessmentForm.style.display = 'block';
+            assessmentForm.scrollIntoView({
+                behavior: 'smooth'
+            });
+            console.log('Form displayed successfully');
+        } else {
+            console.error('Assessment form element not found');
+            alert('설문 폼을 찾을 수 없습니다. 페이지를 새로고침해주세요.');
+        }
+    }
+
+    function resetForm() {
+        console.log('resetForm called');
+        
+        const healthForm = document.getElementById('healthForm');
+        const resultSection = document.getElementById('resultSection');
+        const assessmentForm = document.getElementById('assessmentForm');
+        const loadingSpinner = document.getElementById('loadingSpinner');
+        const submitBtn = document.getElementById('submitBtn');
+        
+        if (healthForm) healthForm.reset();
+        if (resultSection) resultSection.style.display = 'none';
+        if (assessmentForm) assessmentForm.style.display = 'block';
+        if (loadingSpinner) loadingSpinner.style.display = 'none';
+        if (submitBtn) submitBtn.style.display = 'inline-block';
+    }
+
+    // 폼 제출 이벤트 처리
+    document.addEventListener('DOMContentLoaded', function() {
+        const healthForm = document.getElementById('healthForm');
+        if (healthForm) {
+            healthForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                console.log('Form submitted');
+                
+                // 로딩 표시
+                const loadingSpinner = document.getElementById('loadingSpinner');
+                const submitBtn = document.getElementById('submitBtn');
+                
+                if (loadingSpinner) loadingSpinner.style.display = 'block';
+                if (submitBtn) submitBtn.style.display = 'none';
+                
+                // 폼 데이터 수집
+                const formData = new FormData(this);
+                const data = {};
+                
+                const allFields = [
+                    'sex', 'age', 'edu_lvl', 'had_sex', 'n_s_part', 'con_use',
+                    'r_use_con', 'r_sea', 'r_have_1sp', 'r_nhave_sex',
+                    'hiv_mosq', 'h_sti', 'h_o_sti', 'e_t_hiv', 'p_t_hiv',
+                    's_test', 't_in_lab', 'f_t_resu'
+                ];
+                
+                allFields.forEach(field => {
+                    data[field] = parseInt(formData.get(field)) || 0;
+                });
+                
+                console.log('Form data:', data);
+                
+                try {
+                    const response = await fetch('/health/api/analyze/', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(data)
+                    });
+                    
+                    const result = await response.json();
+                    console.log('API response:', result);
+                    
+                    if (result.success) {
+                        displayResult(result.data);
+                    } else {
+                        alert('분석 중 오류가 발생했습니다: ' + result.message);
+                        resetForm();
+                    }
+                } catch (error) {
+                    console.error('API error:', error);
+                    alert('서버 연결 오류: ' + error.message);
+                    resetForm();
+                }
+            });
+        }
+    });
+    
+    function displayResult(data) {
+        console.log('Displaying result:', data);
+        
+        const resultCard = document.getElementById('resultCard');
+        const riskLevel = data.risk_level.toLowerCase();
+        
+        // 위험도별 클래스 적용
+        resultCard.className = `result-card risk-${riskLevel}`;
+        
+        // 위험도별 아이콘
+        let riskIcon = '';
+        let riskColor = '';
+        if (riskLevel === 'low') {
+            riskIcon = 'fas fa-check-circle';
+            riskColor = 'success';
+        } else if (riskLevel === 'medium') {
+            riskIcon = 'fas fa-exclamation-triangle';
+            riskColor = 'warning';
+        } else {
+            riskIcon = 'fas fa-exclamation-circle';
+            riskColor = 'danger';
+        }
+        
+        resultCard.innerHTML = `
+            <div class="text-center mb-4">
+                <i class="${riskIcon} fa-4x text-${riskColor}"></i>
+                <h3 class="mt-3">분석 결과</h3>
+            </div>
+            
+            <div class="row text-center mb-4">
+                <div class="col-md-6">
+                    <h4>위험도</h4>
+                    <div class="display-6 fw-bold">${(data.risk_probability * 100).toFixed(1)}%</div>
+                </div>
+                <div class="col-md-6">
+                    <h4>위험 수준</h4>
+                    <div class="display-6 fw-bold">${data.risk_level}</div>
+                </div>
+            </div>
+            
+            <div class="mb-4">
+                <h5><i class="fas fa-lightbulb"></i> 권장사항</h5>
+                <ul class="list-group list-group-flush">
+                    ${data.recommendations.map(rec => `<li class="list-group-item">${rec}</li>`).join('')}
+                </ul>
+            </div>
+            
+            <div class="alert alert-info">
+                <h6><i class="fas fa-info-circle"></i> 중요한 안내</h6>
+                <p class="mb-0">이 결과는 참고용이며, 정확한 진단을 위해서는 반드시 전문의 상담을 받으시기 바랍니다. 
+                개인의 건강 상태는 다양한 요인에 의해 결정되므로, 이 평가 결과만으로 판단하지 마세요.</p>
+            </div>
+            
+            ${data.model_info ? `
+            <div class="mt-3">
+                <small class="text-muted">
+                    모델 정보: ${data.model_info.type || 'Unknown'} 
+                    (정확도: ${data.model_info.performance ? (data.model_info.performance.accuracy * 100).toFixed(1) + '%' : 'N/A'})
+                </small>
+            </div>
+            ` : ''}
+        `;
+        
+        // 결과 표시 및 폼 숨기기
+        const assessmentForm = document.getElementById('assessmentForm');
+        const resultSection = document.getElementById('resultSection');
+        
+        if (assessmentForm) assessmentForm.style.display = 'none';
+        if (resultSection) {
+            resultSection.style.display = 'block';
+            resultSection.scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+    }
+</script>
+{% endblock %}

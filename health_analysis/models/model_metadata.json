@@ -1,0 +1,159 @@
+{
+  "model_info": {
+    "name": "HIV_Risk_Predictor_Gradient_Boosting",
+    "version": "1.0",
+    "type": "Gradient_Boosting",
+    "framework": "scikit-learn",
+    "created_date": "2025-05-24T09:02:45.014260",
+    "description": "HIV/AIDS risk prediction model"
+  },
+  "data_info": {
+    "dataset": "HIV_AIDS_DataSet.csv",
+    "features": [
+      "Sex",
+      "Age",
+      "Edu_lvl",
+      "Had_Sex",
+      "N_S_Part",
+      "Con_Use",
+      "R_Use_Con",
+      "R_SeA",
+      "R_Have_1SP",
+      "R_Nhave_Sex",
+      "HIV_Mosq",
+      "H_STI",
+      "H_O_STI",
+      "E_T_HIV",
+      "P_T_HIV",
+      "S_Test",
+      "T_in_LAB",
+      "F_T_Resu"
+    ],
+    "feature_count": 18,
+    "sample_count": 78877,
+    "target": "H_AIDS"
+  },
+  "performance": {
+    "train_metrics": {},
+    "test_metrics": {
+      "accuracy": 0.9883367139959433,
+      "precision": 0.9885743962607115,
+      "recall": 0.9994749278025729,
+      "f1": 0.993994778067885,
+      "roc_auc": 0.9904188301585912
+    },
+    "cross_validation": {
+      "mean_auc": 0.9902606350540695,
+      "std_auc": 0.000609922514709962
+    },
+    "feature_importance": {
+      "Sex": 0.004736259728534457,
+      "Age": 0.006038783584135968,
+      "Edu_lvl": 0.01328783368939141,
+      "Had_Sex": 0.009781299003942118,
+      "N_S_Part": 0.057622306013201605,
+      "Con_Use": 0.14504980167399406,
+      "R_Use_Con": 0.01537320683122565,
+      "R_SeA": 0.015030111078976659,
+      "R_Have_1SP": 0.030466033456256907,
+      "R_Nhave_Sex": 0.0665099514451849,
+      "HIV_Mosq": 0.24256548705370465,
+      "H_STI": 0.19069865457979207,
+      "H_O_STI": 0.047396833434469245,
+      "E_T_HIV": 0.11087523436608268,
+      "P_T_HIV": 0.017251067648817443,
+      "S_Test": 0.008469302388348247,
+      "T_in_LAB": 0.001038927823075767,
+      "F_T_Resu": 0.017808906200866247
+    },
+    "best_params": {
+      "learning_rate": 0.1,
+      "max_depth": 5,
+      "n_estimators": 100,
+      "subsample": 1.0
+    }
+  },
+  "model_params": {},
+  "preprocessing": {
+    "scaler": "StandardScaler",
+    "encoders": {},
+    "feature_mappings": {
+      "Sex": {
+        "0": "Female",
+        "1": "Male"
+      },
+      "Age": {
+        "1": "15-19",
+        "2": "20-24",
+        "3": "25-29",
+        "4": "30-34",
+        "5": "35-39",
+        "6": "40-44",
+        "7": "45-49"
+      },
+      "Edu_lvl": {
+        "0": "No education",
+        "1": "Primary",
+        "2": "Secondary",
+        "3": "Higher",
+        "4": "Unknown"
+      },
+      "Had_Sex": {
+        "0": "No",
+        "1": "Yes"
+      },
+      "Con_Use": {
+        "0": "No",
+        "1": "Yes"
+      },
+      "R_Use_Con": {
+        "0": "No",
+        "1": "Yes"
+      },
+      "R_SeA": {
+        "0": "No",
+        "1": "Yes"
+      },
+      "R_Have_1SP": {
+        "0": "No",
+        "1": "Yes"
+      },
+      "R_Nhave_Sex": {
+        "0": "No",
+        "1": "Yes"
+      },
+      "HIV_Mosq": {
+        "0": "No",
+        "1": "Yes"
+      },
+      "H_STI": {
+        "0": "No",
+        "1": "Yes"
+      },
+      "H_O_STI": {
+        "0": "No",
+        "1": "Yes"
+      },
+      "E_T_HIV": {
+        "0": "No",
+        "1": "Yes"
+      },
+      "P_T_HIV": {
+        "0": "No",
+        "1": "Yes"
+      },
+      "S_Test": {
+        "0": "Negative",
+        "1": "Positive"
+      },
+      "T_in_LAB": {
+        "0": "No",
+        "1": "Yes"
+      },
+      "F_T_Resu": {
+        "0": "Negative",
+        "1": "Positive"
+      }
+    }
+  }
+}

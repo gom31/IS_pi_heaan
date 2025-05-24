@@ -1,0 +1,197 @@
+{% extends 'health_analysis/base.html' %}
+
+{% block title %}개인정보처리방침 - SSH{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <h1 class="text-center mb-5">개인정보처리방침</h1>
+            
+            <div class="alert alert-success text-center">
+                <h4><i class="fas fa-shield-alt"></i> 핵심 원칙</h4>
+                <p class="mb-0">SSH는 어떠한 개인정보도 수집하지 않습니다</p>
+            </div>
+
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h3>1. 개인정보의 수집</h3>
+                </div>
+                <div class="card-body">
+                    <h5>수집하지 않는 정보</h5>
+                    <ul>
+                        <li>이름, 주민등록번호, 전화번호 등 개인 식별 정보</li>
+                        <li>이메일 주소, 주소 등 연락처 정보</li>
+                        <li>IP 주소, MAC 주소 등 기기 식별 정보</li>
+                        <li>쿠키, 세션 정보 등 웹 추적 정보</li>
+                        <li>위치 정보, 접속 로그 등 행동 정보</li>
+                    </ul>
+                    
+                    <h5 class="mt-3">처리하는 정보</h5>
+                    <ul>
+                        <li><strong>설문 응답:</strong> 19개 건강 관련 질문에 대한 익명 응답</li>
+                        <li><strong>처리 방식:</strong> 동형암호로 즉시 암호화하여 처리</li>
+                        <li><strong>저장 여부:</strong> 일체 저장하지 않음</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h3>2. 동형암호 처리 과정</h3>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3 text-center mb-3">
+                            <i class="fas fa-user fa-2x text-primary"></i>
+                            <h6 class="mt-2">사용자 입력</h6>
+                            <small>설문 응답</small>
+                        </div>
+                        <div class="col-md-1 text-center mb-3">
+                            <i class="fas fa-arrow-right fa-2x text-muted"></i>
+                        </div>
+                        <div class="col-md-3 text-center mb-3">
+                            <i class="fas fa-lock fa-2x text-success"></i>
+                            <h6 class="mt-2">즉시 암호화</h6>
+                            <small>클라이언트에서</small>
+                        </div>
+                        <div class="col-md-1 text-center mb-3">
+                            <i class="fas fa-arrow-right fa-2x text-muted"></i>
+                        </div>
+                        <div class="col-md-3 text-center mb-3">
+                            <i class="fas fa-server fa-2x text-info"></i>
+                            <h6 class="mt-2">서버 처리</h6>
+                            <small>암호화 상태로</small>
+                        </div>
+                    </div>
+                    
+                    <div class="alert alert-info">
+                        <strong>중요:</strong> 서버는 평문 데이터를 절대 보지 못하며, 
+                        오직 암호화된 데이터만 처리합니다.
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h3>3. 데이터 보안</h3>
+                </div>
+                <div class="card-body">
+                    <h5>기술적 보호조치</h5>
+                    <ul>
+                        <li><strong>CKKS 동형암호:</strong> 데이터를 암호화한 상태에서 연산</li>
+                        <li><strong>클라이언트 키 관리:</strong> 복호화 키는 사용자 브라우저에만 존재</li>
+                        <li><strong>HTTPS 통신:</strong> 모든 데이터 전송 구간 암호화</li>
+                        <li><strong>메모리 내 처리:</strong> 서버 디스크에 데이터 저장 안 함</li>
+                    </ul>
+                    
+                    <h5 class="mt-3">관리적 보호조치</h5>
+                    <ul>
+                        <li>개인정보 처리 직원 없음 (자동화 시스템)</li>
+                        <li>정기적 보안 점검 및 업데이트</li>
+                        <li>외부 침입 방지 시스템 운영</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h3>4. 서비스 이용 기록</h3>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6 class="text-danger">기록하지 않는 정보</h6>
+                            <ul>
+                                <li>접속 IP 주소</li>
+                                <li>접속 시간</li>
+                                <li>브라우저 정보</li>
+                                <li>운영체제 정보</li>
+                                <li>접속 경로</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h6 class="text-success">기록하는 정보</h6>
+                            <ul>
+                                <li>시스템 오류 로그 (개인정보 제외)</li>
+                                <li>서비스 성능 모니터링</li>
+                                <li>익명화된 이용 통계</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h3>5. 쿠키 및 추적 기술</h3>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-success">
+                        <h6><i class="fas fa-cookie-bite"></i> 쿠키 사용 안 함</h6>
+                        <p class="mb-0">
+                            SSH는 사용자 추적을 위한 쿠키, 로컬 스토리지, 
+                            세션 스토리지 등을 일체 사용하지 않습니다.
+                        </p>
+                    </div>
+                    
+                    <p>단, 다음의 경우에만 임시적으로 브라우저 메모리를 사용합니다:</p>
+                    <ul>
+                        <li>동형암호 키 생성 및 관리 (페이지 새로고침 시 삭제)</li>
+                        <li>분석 결과 표시 (페이지 이동 시 삭제)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h3>6. 제3자 제공</h3>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-warning">
+                        <h6><i class="fas fa-ban"></i> 제3자 제공 절대 없음</h6>
+                        <p class="mb-0">
+                            수집하는 개인정보가 없으므로, 제3자에게 제공할 정보 자체가 존재하지 않습니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h3>7. 개인정보 보호책임자</h3>
+                </div>
+                <div class="card-body">
+                    <p>개인정보를 수집하지 않는 서비스이므로 별도의 개인정보보호책임자를 두지 않습니다.</p>
+                    
+                    <div class="alert alert-info">
+                        <h6>서비스 관련 문의</h6>
+                        <p class="mb-0">
+                            기술적 문의사항이나 서비스 개선 제안이 있으시면 
+                            GitHub 저장소의 Issues를 통해 연락 주시기 바랍니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3>8. 방침 변경</h3>
+                </div>
+                <div class="card-body">
+                    <p>
+                        이 개인정보처리방침은 2025년 1월 1일부터 적용됩니다. 
+                        향후 내용이 추가, 삭제 또는 수정되는 경우 
+                        변경사항의 시행 7일 전부터 서비스 내 공지사항을 통하여 고지할 것입니다.
+                    </p>
+                    
+                    <ul>
+                        <li><strong>최초 제정:</strong> 2025년 1월 1일</li>
+                        <li><strong>최종 수정:</strong> 2025년 1월 1일</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

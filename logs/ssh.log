@@ -1,0 +1,22 @@
+INFO 2025-05-24 09:24:50,315 model_utils 82378 140294470370880 모델 로드 완료: HIV_Risk_Predictor_Gradient_Boosting
+WARNING 2025-05-24 09:24:50,316 he_utils 82378 140294470370880 Non-linear model detected. Using approximated coefficients for HE.
+INFO 2025-05-24 09:24:50,316 he_utils 82378 140294470370880 Model loaded successfully:
+INFO 2025-05-24 09:24:50,316 he_utils 82378 140294470370880   - Type: Gradient_Boosting
+INFO 2025-05-24 09:24:50,316 he_utils 82378 140294470370880   - Features: 18
+INFO 2025-05-24 09:24:50,316 he_utils 82378 140294470370880   - AUC: 0.9904
+INFO 2025-05-24 09:24:50,316 he_utils 82378 140294470370880 HE Health Analyzer initialized successfully
+INFO 2025-05-24 09:24:50,316 views 82378 140294470370880 Health analyzer initialized successfully
+INFO 2025-05-24 09:24:50,316 he_utils 82378 140294470370880 Starting health risk analysis (HE: True)...
+INFO 2025-05-24 09:24:50,316 he_utils 82378 140294470370880 Preprocessed 18 features
+INFO 2025-05-24 09:24:50,322 he_utils 82378 140294470370880 User data encrypted successfully
+INFO 2025-05-24 09:24:50,339 he_utils 82378 140294470370880 HE risk probability computed successfully
+INFO 2025-05-24 09:24:50,341 he_utils 82378 140294470370880 HE result decrypted: 0.4868
+INFO 2025-05-24 09:24:50,341 he_utils 82378 140294470370880 Analysis completed: 0.4868 (Homomorphic Encryption)
+INFO 2025-05-24 09:24:50,341 views 82378 140294470370880 Analysis completed for user input: {'sex': 1, 'age': 3, 'edu_lvl': 3, 'had_sex': 0, 'n_s_part': 0, 'con_use': 0, 'r_use_con': 0, 'r_sea': 0, 'r_have_1sp': 0, 'r_nhave_sex': 1, 'hiv_mosq': 1, 'h_sti': 0, 'h_o_sti': 0, 'e_t_hiv': 0, 'p_t_hiv': 0, 's_test': 0, 't_in_lab': 0, 'f_t_resu': 0}
+INFO 2025-05-24 09:25:37,763 he_utils 82378 140294470370880 Starting health risk analysis (HE: True)...
+INFO 2025-05-24 09:25:37,764 he_utils 82378 140294470370880 Preprocessed 18 features
+INFO 2025-05-24 09:25:37,769 he_utils 82378 140294470370880 User data encrypted successfully
+INFO 2025-05-24 09:25:37,787 he_utils 82378 140294470370880 HE risk probability computed successfully
+INFO 2025-05-24 09:25:37,788 he_utils 82378 140294470370880 HE result decrypted: 0.4868
+INFO 2025-05-24 09:25:37,788 he_utils 82378 140294470370880 Analysis completed: 0.4868 (Homomorphic Encryption)
+INFO 2025-05-24 09:25:37,788 views 82378 140294470370880 Analysis completed for user input: {'sex': 1, 'age': 3, 'edu_lvl': 3, 'had_sex': 0, 'n_s_part': 0, 'con_use': 0, 'r_use_con': 0, 'r_sea': 0, 'r_have_1sp': 0, 'r_nhave_sex': 1, 'hiv_mosq': 1, 'h_sti': 0, 'h_o_sti': 0, 'e_t_hiv': 0, 'p_t_hiv': 0, 's_test': 0, 't_in_lab': 0, 'f_t_resu': 0}
