@@ -60,14 +60,14 @@ bash# Navigate to Django project directory
 cd ssh_service
 
 # Run database migrations
-python manage.py makemigrations
-python manage.py migrate
+python3 manage.py makemigrations
+python3 manage.py migrate
 
 # Collect static files (if needed)
-python manage.py collectstatic --noinput
+python3 manage.py collectstatic --noinput
 3.5 Start Django Development Server
 bash# Run the server (accessible from host machine)
-python manage.py runserver 0.0.0.0:8000
+python3 manage.py runserver 0.0.0.0:8000
 Step 4: Access the Application
 Open your web browser and navigate to:
 http://localhost:8000
@@ -131,30 +131,21 @@ bash# Navigate to ML training directory
 cd health_analysis/ml_training
 
 # Run model training
-python train_model.py
+python3 train_model.py
 
 # Or use Django management command
 cd ../../ssh_service
-python manage.py train_model --data-path ../data/HIV_AIDS_DataSet.csv
+python3 manage.py train_model --data-path ../data/HIV_AIDS_DataSet.csv
 Model Stability Analysis
 bash# Run 100 iterations for stability analysis
-python manage.py analyze_model_stability \
+python3 manage.py analyze_model_stability \
   --data-path ../data/HIV_AIDS_DataSet.csv \
   --iterations 100 \
   --models all
 
-# Quick test with 10 iterations
-python manage.py analyze_model_stability \
-  --data-path ../data/HIV_AIDS_DataSet.csv \
-  --iterations 10 \
-  --quick
-🔐 Security Features
-
-Homomorphic Encryption: Data processed in encrypted form
-Anonymous Analysis: No personally identifiable information stored
-Privacy-Preserving: Computations performed on encrypted data
-Secure Data Blocks: Input data automatically encrypted and protected
-
-Security Test
+# model statbility analyzer
+python3 model_statbility_analyzer.py
+ 
+# Security Test
 bash# Run simple security demonstration
-python simple_block_test.py
+python3 data_block_security_test.py
