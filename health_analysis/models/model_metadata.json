@@ -4,7 +4,7 @@
     "version": "1.0",
     "type": "Logistic_Regression",
     "framework": "scikit-learn",
-    "created_date": "2025-05-26T10:03:06.732743",
+    "created_date": "2025-05-26T12:19:10.676676",
     "description": "HIV/AIDS risk prediction model"
   },
   "data_info": {

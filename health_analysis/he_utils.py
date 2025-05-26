@@ -156,16 +156,17 @@ class HEHealthAnalyzer:
 
             # Sigmoid approximation (cubic polynomial)
             # sigmoid(x) ≈ 0.5 + 0.197*x - 0.004*x³ for x in [-2, 2]
-            x = linear_result
-            x_squared = x * x
-            x_cubed = x_squared * x
+            
+            #x = linear_result
+            #x_squared = x * x
+            #x_cubed = x_squared * x
 
-            sigmoid_result = Block(self.context, encrypted=True, data=[0.5])
-            sigmoid_result = sigmoid_result + (x * 0.197)
-            sigmoid_result = sigmoid_result - (x_cubed * 0.0004)
+            #sigmoid_result = Block(self.context, encrypted=True, data=[0.5])
+            #sigmoid_result = sigmoid_result + (x * 0.197)
+            #sigmoid_result = sigmoid_result - (x_cubed * 0.0004)
 
             logger.info("HE risk probability computed successfully")
-            return sigmoid_result
+            return linear_result #sigmoid_result
 
         except Exception as e:
             logger.error(f"Failed to compute HE risk probability: {e}")
@@ -192,9 +193,10 @@ class HEHealthAnalyzer:
         """Decrypt and postprocess result"""
         try:
             decrypted_result = encrypted_result.decrypt(inplace=False)
-            probability = float(decrypted_result[0])
-
-            probability = max(0.0, min(1.0, probability))
+            #probability = float(decrypted_result[0])
+            #probability = max(0.0, min(1.0, probability))
+            linear_value = float(decrypted_result[0])
+            probability = 1 / (1 + np.exp(-linear_value))
 
             logger.info(f"HE result decrypted: {probability:.4f}")
             return probability

@@ -87,3 +87,59 @@ INFO 2025-05-26 11:53:03,649 he_utils 87435 140582083339840 HE risk probability 
 INFO 2025-05-26 11:53:03,651 he_utils 87435 140582083339840 HE result decrypted: 0.4152
 INFO 2025-05-26 11:53:03,651 he_utils 87435 140582083339840 Analysis completed: 0.4152 (Homomorphic Encryption)
 INFO 2025-05-26 11:53:03,651 views 87435 140582083339840 Analysis completed for user input: {'sex': 1, 'age': 6, 'edu_lvl': 0, 'had_sex': 1, 'n_s_part': 39, 'con_use': 0, 'r_use_con': 0, 'r_sea': 1, 'r_have_1sp': 0, 'r_nhave_sex': 0, 'hiv_mosq': 0, 'h_sti': 0, 'h_o_sti': 0, 'e_t_hiv': 0, 'p_t_hiv': 1, 's_test': 1, 't_in_lab': 1, 'h_aids': 0}
+INFO 2025-05-26 12:27:43,054 model_utils 7571 139892837725760 Model loaded: HIV_Risk_Predictor_Logistic_Regression
+INFO 2025-05-26 12:27:43,054 he_utils 7571 139892837725760 Model loaded successfully:
+INFO 2025-05-26 12:27:43,055 he_utils 7571 139892837725760   - Type: Logistic_Regression
+INFO 2025-05-26 12:27:43,055 he_utils 7571 139892837725760   - Features: 18
+INFO 2025-05-26 12:27:43,055 he_utils 7571 139892837725760   - AUC: 0.8307
+INFO 2025-05-26 12:27:43,055 he_utils 7571 139892837725760 HE Health Analyzer initialized successfully
+INFO 2025-05-26 12:27:43,055 views 7571 139892837725760 Health analyzer initialized successfully
+INFO 2025-05-26 12:27:43,056 he_utils 7571 139892837725760 Starting health risk analysis (HE: True)...
+INFO 2025-05-26 12:27:43,056 he_utils 7571 139892837725760 Preprocessed 18 features
+INFO 2025-05-26 12:27:43,064 he_utils 7571 139892837725760 User data encrypted successfully
+INFO 2025-05-26 12:27:43,087 he_utils 7571 139892837725760 HE risk probability computed successfully
+INFO 2025-05-26 12:27:43,089 he_utils 7571 139892837725760 HE result decrypted: 0.3939
+INFO 2025-05-26 12:27:43,090 he_utils 7571 139892837725760 Analysis completed: 0.3939 (Homomorphic Encryption)
+INFO 2025-05-26 12:27:43,090 views 7571 139892837725760 Analysis completed for user input: {'sex': 1, 'age': 3, 'edu_lvl': 3, 'had_sex': 0, 'n_s_part': 0, 'con_use': 0, 'r_use_con': 0, 'r_sea': 0, 'r_have_1sp': 0, 'r_nhave_sex': 0, 'hiv_mosq': 0, 'h_sti': 0, 'h_o_sti': 0, 'e_t_hiv': 0, 'p_t_hiv': 0, 's_test': 0, 't_in_lab': 0, 'h_aids': 1}
+INFO 2025-05-26 12:34:03,657 model_utils 11043 140048058172992 Model loaded: HIV_Risk_Predictor_Logistic_Regression
+INFO 2025-05-26 12:34:03,657 he_utils 11043 140048058172992 Model loaded successfully:
+INFO 2025-05-26 12:34:03,657 he_utils 11043 140048058172992   - Type: Logistic_Regression
+INFO 2025-05-26 12:34:03,657 he_utils 11043 140048058172992   - Features: 18
+INFO 2025-05-26 12:34:03,657 he_utils 11043 140048058172992   - AUC: 0.8307
+INFO 2025-05-26 12:34:03,657 he_utils 11043 140048058172992 HE Health Analyzer initialized successfully
+INFO 2025-05-26 12:34:03,657 views 11043 140048058172992 Health analyzer initialized successfully
+INFO 2025-05-26 12:34:03,657 he_utils 11043 140048058172992 Starting health risk analysis (HE: True)...
+INFO 2025-05-26 12:34:03,657 he_utils 11043 140048058172992 Preprocessed 18 features
+INFO 2025-05-26 12:34:03,663 he_utils 11043 140048058172992 User data encrypted successfully
+INFO 2025-05-26 12:34:03,675 he_utils 11043 140048058172992 HE risk probability computed successfully
+INFO 2025-05-26 12:34:03,676 he_utils 11043 140048058172992 HE result decrypted: 0.4708
+INFO 2025-05-26 12:34:03,676 he_utils 11043 140048058172992 Analysis completed: 0.4708 (Homomorphic Encryption)
+INFO 2025-05-26 12:34:03,676 views 11043 140048058172992 Analysis completed for user input: {'sex': 0, 'age': 5, 'edu_lvl': 2, 'had_sex': 1, 'n_s_part': 5, 'con_use': 1, 'r_use_con': 0, 'r_sea': 1, 'r_have_1sp': 1, 'r_nhave_sex': 0, 'hiv_mosq': 0, 'h_sti': 1, 'h_o_sti': 0, 'e_t_hiv': 0, 'p_t_hiv': 0, 's_test': 0, 't_in_lab': 0, 'h_aids': 1}
+INFO 2025-05-26 13:54:11,687 model_utils 35379 139695001138752 Model loaded: HIV_Risk_Predictor_Logistic_Regression
+INFO 2025-05-26 13:54:11,687 he_utils 35379 139695001138752 Model loaded successfully:
+INFO 2025-05-26 13:54:11,687 he_utils 35379 139695001138752   - Type: Logistic_Regression
+INFO 2025-05-26 13:54:11,688 he_utils 35379 139695001138752   - Features: 18
+INFO 2025-05-26 13:54:11,688 he_utils 35379 139695001138752   - AUC: 0.8307
+INFO 2025-05-26 13:54:11,688 he_utils 35379 139695001138752 HE Health Analyzer initialized successfully
+INFO 2025-05-26 13:54:11,688 views 35379 139695001138752 Health analyzer initialized successfully
+INFO 2025-05-26 13:54:11,688 he_utils 35379 139695001138752 Starting health risk analysis (HE: True)...
+INFO 2025-05-26 13:54:11,689 he_utils 35379 139695001138752 Preprocessed 18 features
+INFO 2025-05-26 13:54:11,696 he_utils 35379 139695001138752 User data encrypted successfully
+INFO 2025-05-26 13:54:11,720 he_utils 35379 139695001138752 HE risk probability computed successfully
+INFO 2025-05-26 13:54:11,722 he_utils 35379 139695001138752 HE result decrypted: 0.4708
+INFO 2025-05-26 13:54:11,722 he_utils 35379 139695001138752 Analysis completed: 0.4708 (Homomorphic Encryption)
+INFO 2025-05-26 13:54:11,722 views 35379 139695001138752 Analysis completed for user input: {'sex': 0, 'age': 3, 'edu_lvl': 3, 'had_sex': 1, 'n_s_part': 1, 'con_use': 1, 'r_use_con': 1, 'r_sea': 0, 'r_have_1sp': 1, 'r_nhave_sex': 1, 'hiv_mosq': 1, 'h_sti': 0, 'h_o_sti': 0, 'e_t_hiv': 0, 'p_t_hiv': 0, 's_test': 0, 't_in_lab': 0, 'h_aids': 1}
+INFO 2025-05-26 14:01:38,340 he_utils 35379 139694375372352 Starting health risk analysis (HE: True)...
+INFO 2025-05-26 14:01:38,342 he_utils 35379 139694375372352 Preprocessed 18 features
+INFO 2025-05-26 14:01:38,356 he_utils 35379 139694375372352 User data encrypted successfully
+INFO 2025-05-26 14:01:38,368 he_utils 35379 139694375372352 HE risk probability computed successfully
+INFO 2025-05-26 14:01:38,369 he_utils 35379 139694375372352 HE result decrypted: 0.3939
+INFO 2025-05-26 14:01:38,369 he_utils 35379 139694375372352 Analysis completed: 0.3939 (Homomorphic Encryption)
+INFO 2025-05-26 14:01:38,369 views 35379 139694375372352 Analysis completed for user input: {'sex': 1, 'age': 5, 'edu_lvl': 3, 'had_sex': 1, 'n_s_part': 5, 'con_use': 1, 'r_use_con': 1, 'r_sea': 1, 'r_have_1sp': 1, 'r_nhave_sex': 0, 'hiv_mosq': 0, 'h_sti': 1, 'h_o_sti': 1, 'e_t_hiv': 0, 'p_t_hiv': 0, 's_test': 0, 't_in_lab': 0, 'h_aids': 1}
+INFO 2025-05-26 14:04:31,807 he_utils 35379 139694375372352 Starting health risk analysis (HE: True)...
+INFO 2025-05-26 14:04:31,808 he_utils 35379 139694375372352 Preprocessed 18 features
+INFO 2025-05-26 14:04:31,813 he_utils 35379 139694375372352 User data encrypted successfully
+INFO 2025-05-26 14:04:31,826 he_utils 35379 139694375372352 HE risk probability computed successfully
+INFO 2025-05-26 14:04:31,827 he_utils 35379 139694375372352 HE result decrypted: 0.3939
+INFO 2025-05-26 14:04:31,827 he_utils 35379 139694375372352 Analysis completed: 0.3939 (Homomorphic Encryption)
+INFO 2025-05-26 14:04:31,827 views 35379 139694375372352 Analysis completed for user input: {'sex': 1, 'age': 5, 'edu_lvl': 3, 'had_sex': 1, 'n_s_part': 5, 'con_use': 1, 'r_use_con': 1, 'r_sea': 1, 'r_have_1sp': 1, 'r_nhave_sex': 0, 'hiv_mosq': 1, 'h_sti': 0, 'h_o_sti': 0, 'e_t_hiv': 0, 'p_t_hiv': 0, 's_test': 0, 't_in_lab': 0, 'h_aids': 1}
