@@ -1,17 +1,19 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}SSH - 익명 성적 건강 평가{% endblock %}</title>
+    <title>{% block title %}SSH - Anonymous Sexual Health Assessment{% endblock %}</title>
     
     <!-- Bootstrap CSS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     
-    <!-- 커스텀 CSS -->
+    <!-- Custom CSS -->
     <style>
         body {
-            font-family: 'Noto Sans KR', sans-serif;
+            font-family: 'Noto Sans', sans-serif;
             background-color: #f8f9fa;
         }
         
@@ -93,17 +95,30 @@
             border-radius: 10px;
             margin-bottom: 30px;
         }
+
+        /* 추가된 스타일 */
+        .error-message {
+            color: #dc3545;
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+        
+        .success-message {
+            color: #28a745;
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
     </style>
     
     {% block extra_css %}{% endblock %}
 </head>
 <body>
-    <!-- 네비게이션 -->
+    <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
         <div class="container">
             <a class="navbar-brand" href="{% url 'health_analysis:home' %}">
                 🔒 SSH
-                <span class="privacy-badge">동형암호</span>
+                <span class="privacy-badge">Homomorphic</span>
             </a>
             
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -113,44 +128,44 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'health_analysis:home' %}">홈</a>
+                        <a class="nav-link" href="{% url 'health_analysis:home' %}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'health_analysis:about' %}">서비스 소개</a>
+                        <a class="nav-link" href="{% url 'health_analysis:about' %}">About Service</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'health_analysis:privacy' %}">개인정보처리방침</a>
+                        <a class="nav-link" href="{% url 'health_analysis:privacy' %}">Privacy Policy</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <!-- 메인 콘텐츠 -->
+    <!-- Main Content -->
     <main>
         {% block content %}{% endblock %}
     </main>
 
-    <!-- 푸터 -->
+    <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
                     <h5>SSH - SecureSexHealth</h5>
-                    <p>동형암호를 이용한 익명 성적 건강 평가 서비스</p>
+                    <p>Anonymous sexual health assessment service using homomorphic encryption</p>
                 </div>
                 <div class="col-md-6">
-                    <h6>개인정보 보호</h6>
+                    <h6>Privacy Protection</h6>
                     <ul class="list-unstyled">
-                        <li>✓ 모든 데이터 암호화</li>
-                        <li>✓ 개인정보 미수집</li>
-                        <li>✓ 완전 익명 처리</li>
+                        <li>✓ All data encrypted</li>
+                        <li>✓ No personal information collected</li>
+                        <li>✓ Complete anonymous processing</li>
                     </ul>
                 </div>
             </div>
             <hr>
             <div class="text-center">
-                <small>&copy; 2025 SSH Project. 교육 목적으로 개발된 시스템입니다.</small>
+                <small>&copy; 2025 SSH Project. System developed for educational purposes.</small>
             </div>
         </div>
     </footer>

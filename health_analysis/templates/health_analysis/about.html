@@ -1,6 +1,6 @@
 {% extends 'health_analysis/base.html' %}
 
-{% block title %}서비스 소개 - SSH{% endblock %}
+{% block title %}Service Introduction - SSH{% endblock %}
 
 {% block content %}
 <div class="container py-5">
@@ -10,39 +10,39 @@
             
             <div class="card mb-4">
                 <div class="card-body">
-                    <h3 class="card-title">🎯 서비스 목적</h3>
+                    <h3 class="card-title">🎯 Service Purpose</h3>
                     <p class="card-text">
-                        SSH는 성적 건강이라는 민감한 주제에 대해 완전한 익명성을 보장하면서 
-                        개인 맞춤형 위험도 평가를 제공하는 혁신적인 서비스입니다. 
-                        사회적 편견이나 개인정보 노출에 대한 우려 없이 
-                        자신의 건강 상태를 객관적으로 파악할 수 있습니다.
+                        SSH is an innovative service that provides personalized risk assessment 
+                        while ensuring complete anonymity for the sensitive topic of sexual health. 
+                        You can objectively understand your health status without concerns about 
+                        social prejudice or personal information exposure.
                     </p>
                 </div>
             </div>
 
             <div class="card mb-4">
                 <div class="card-body">
-                    <h3 class="card-title">🔒 동형암호 기술</h3>
+                    <h3 class="card-title">🔒 Homomorphic Encryption Technology</h3>
                     <p class="card-text">
-                        동형암호(Homomorphic Encryption)는 데이터를 암호화한 상태에서도 
-                        연산을 수행할 수 있는 혁신적인 암호화 기술입니다.
+                        Homomorphic Encryption is an innovative encryption technology that allows 
+                        computations to be performed on encrypted data without decrypting it.
                     </p>
                     
                     <div class="row mt-3">
                         <div class="col-md-4 text-center">
                             <i class="fas fa-upload fa-2x text-primary mb-2"></i>
-                            <h6>1. 암호화 전송</h6>
-                            <small>사용자 데이터가 즉시 암호화되어 서버로 전송</small>
+                            <h6>1. Encrypted Transmission</h6>
+                            <small>User data is immediately encrypted and transmitted to the server</small>
                         </div>
                         <div class="col-md-4 text-center">
                             <i class="fas fa-calculator fa-2x text-success mb-2"></i>
-                            <h6>2. 암호화 연산</h6>
-                            <small>암호화된 상태에서 AI 모델이 위험도 계산</small>
+                            <h6>2. Encrypted Computation</h6>
+                            <small>AI model calculates risk assessment on encrypted data</small>
                         </div>
                         <div class="col-md-4 text-center">
                             <i class="fas fa-download fa-2x text-info mb-2"></i>
-                            <h6>3. 결과 복호화</h6>
-                            <small>사용자만이 최종 결과를 복호화하여 확인</small>
+                            <h6>3. Result Decryption</h6>
+                            <small>Only the user can decrypt and view the final results</small>
                         </div>
                     </div>
                 </div>
@@ -50,24 +50,24 @@
 
             <div class="card mb-4">
                 <div class="card-body">
-                    <h3 class="card-title">🤖 AI 모델 정보</h3>
+                    <h3 class="card-title">🤖 AI Model Information</h3>
                     <p class="card-text">
-                        SSH는 HIV/AIDS 관련 데이터셋을 기반으로 훈련된 
-                        로지스틱 회귀 모델을 사용합니다.
+                        SSH uses a logistic regression model trained on 
+                        HIV/AIDS related datasets.
                     </p>
                     
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">
-                            <strong>입력 특성:</strong> 19개의 성적 건강 관련 요인
+                            <strong>Input Features:</strong> 19 sexual health related factors
                         </li>
                         <li class="list-group-item">
-                            <strong>모델 타입:</strong> 로지스틱 회귀 (Logistic Regression)
+                            <strong>Model Type:</strong> Logistic Regression
                         </li>
                         <li class="list-group-item">
-                            <strong>훈련 데이터:</strong> 익명화된 공개 HIV/AIDS 데이터셋
+                            <strong>Training Data:</strong> Anonymized public HIV/AIDS dataset
                         </li>
                         <li class="list-group-item">
-                            <strong>예측 대상:</strong> HIV/AIDS 감염 위험도 확률
+                            <strong>Prediction Target:</strong> HIV/AIDS infection risk probability
                         </li>
                     </ul>
                 </div>
@@ -75,26 +75,26 @@
 
             <div class="card mb-4">
                 <div class="card-body">
-                    <h3 class="card-title">🛡️ 개인정보 보호</h3>
+                    <h3 class="card-title">🛡️ Privacy Protection</h3>
                     
                     <div class="alert alert-success">
-                        <h6><i class="fas fa-check-circle"></i> 보장되는 사항</h6>
+                        <h6><i class="fas fa-check-circle"></i> Guaranteed Protections</h6>
                         <ul class="mb-0">
-                            <li>모든 데이터는 클라이언트에서 즉시 암호화</li>
-                            <li>서버는 암호화된 데이터만 처리</li>
-                            <li>개인 식별 정보 일체 수집 안 함</li>
-                            <li>IP 주소, 쿠키 등 추적 정보 저장 안 함</li>
-                            <li>완전한 익명 세션으로 운영</li>
+                            <li>All data is immediately encrypted on the client side</li>
+                            <li>Server only processes encrypted data</li>
+                            <li>No collection of personally identifiable information</li>
+                            <li>No storage of tracking information like IP addresses or cookies</li>
+                            <li>Operates with completely anonymous sessions</li>
                         </ul>
                     </div>
                     
                     <div class="alert alert-info">
-                        <h6><i class="fas fa-info-circle"></i> 기술적 보호조치</h6>
+                        <h6><i class="fas fa-info-circle"></i> Technical Safeguards</h6>
                         <ul class="mb-0">
-                            <li>CKKS 동형암호 알고리즘 사용</li>
-                            <li>클라이언트 측 키 관리</li>
-                            <li>HTTPS 통신 암호화</li>
-                            <li>서버 측 데이터 미저장</li>
+                            <li>Uses CKKS homomorphic encryption algorithm</li>
+                            <li>Client-side key management</li>
+                            <li>HTTPS communication encryption</li>
+                            <li>No data storage on server side</li>
                         </ul>
                     </div>
                 </div>
@@ -102,15 +102,15 @@
 
             <div class="card mb-4">
                 <div class="card-body">
-                    <h3 class="card-title">⚠️ 중요한 제한사항</h3>
+                    <h3 class="card-title">⚠️ Important Limitations</h3>
                     
                     <div class="alert alert-warning">
-                        <h6><i class="fas fa-exclamation-triangle"></i> 반드시 숙지하세요</h6>
+                        <h6><i class="fas fa-exclamation-triangle"></i> Please Read Carefully</h6>
                         <ul class="mb-0">
-                            <li><strong>참고용 결과:</strong> 이 평가는 참고용이며 의학적 진단이 아닙니다</li>
-                            <li><strong>전문의 상담 필수:</strong> 정확한 진단은 반드시 의료진과 상담하세요</li>
-                            <li><strong>교육 목적:</strong> 이 시스템은 교육 및 연구 목적으로 개발되었습니다</li>
-                            <li><strong>완벽하지 않음:</strong> AI 모델의 예측에는 오차가 있을 수 있습니다</li>
+                            <li><strong>Reference Only:</strong> This assessment is for reference only and is not a medical diagnosis</li>
+                            <li><strong>Professional Consultation Required:</strong> Accurate diagnosis must be obtained through consultation with medical professionals</li>
+                            <li><strong>Educational Purpose:</strong> This system was developed for educational and research purposes</li>
+                            <li><strong>Not Perfect:</strong> AI model predictions may contain errors</li>
                         </ul>
                     </div>
                 </div>
@@ -118,16 +118,17 @@
 
             <div class="card">
                 <div class="card-body">
-                    <h3 class="card-title">🎓 개발 배경</h3>
+                    <h3 class="card-title">🎓 Development Background</h3>
                     <p class="card-text">
-                        이 프로젝트는 동형암호를 이용한 프라이버시 보호 애플리케이션 개발을 위한 
-                        학술 연구 프로젝트입니다. 성적 건강이라는 민감한 주제를 통해 
-                        동형암호 기술의 실용적 활용 가능성을 탐구하고 있습니다.
+                        This project is an academic research project for developing privacy-preserving 
+                        applications using homomorphic encryption. We are exploring the practical 
+                        applicability of homomorphic encryption technology through the sensitive 
+                        topic of sexual health.
                     </p>
                     
                     <div class="text-center mt-4">
                         <a href="{% url 'health_analysis:home' %}" class="btn btn-primary">
-                            평가 시작하기
+                            Start Assessment
                         </a>
                     </div>
                 </div>

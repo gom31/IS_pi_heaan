@@ -4,7 +4,7 @@
 모델 훈련 관련 설정들
 """
 
-# 모델 하이퍼파라미터
+# model hyper-parameter
 MODEL_CONFIG = {
     'logistic_regression': {
         'param_grid': {
@@ -44,12 +44,12 @@ MODEL_CONFIG = {
     }
 }
 
-# 데이터 전처리 설정 (수정됨)
+# data preprocessing config 
 DATA_CONFIG = {
     'test_size': 0.2,
     'random_state': 42
 }
-# 모델 평가 기준
+# model evaluation criteria
 EVALUATION_CONFIG = {
     'primary_metric': 'roc_auc',
     'secondary_metrics': ['accuracy', 'precision', 'recall', 'f1'],
@@ -57,7 +57,7 @@ EVALUATION_CONFIG = {
     'cv_folds': 5
 }
 
-# 파일 경로 설정
+# file path config
 PATHS = {
     'data_dir': '../../data',
     'model_dir': '../models',
@@ -65,7 +65,7 @@ PATHS = {
     'backup_dir': '../models/backup'
 }
 
-# 동형암호 설정 (CKKS 파라미터)
+#  HE config (CKKS parameter)
 HE_CONFIG = {
     'context_params': {
         'key_dir_path': './keys',
@@ -75,7 +75,7 @@ HE_CONFIG = {
     'scale_bits': 20
 }
 
-# 모델 메타데이터 템플릿
+# model metadata template
 METADATA_TEMPLATE = {
     'model_info': {
         'name': '',
@@ -90,7 +90,7 @@ METADATA_TEMPLATE = {
         'features': [],
         'feature_count': 0,
         'sample_count': 0,
-        'target': 'H_AIDS'
+        'target': 'F_T_Resu'
     },
     'performance': {
         'train_metrics': {},

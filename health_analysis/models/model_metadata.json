@@ -1,10 +1,10 @@
 {
   "model_info": {
-    "name": "HIV_Risk_Predictor_Gradient_Boosting",
+    "name": "HIV_Risk_Predictor_Logistic_Regression",
     "version": "1.0",
-    "type": "Gradient_Boosting",
+    "type": "Logistic_Regression",
     "framework": "scikit-learn",
-    "created_date": "2025-05-24T09:02:45.014260",
+    "created_date": "2025-05-26T10:03:06.732743",
     "description": "HIV/AIDS risk prediction model"
   },
   "data_info": {
@@ -27,53 +27,56 @@
       "P_T_HIV",
       "S_Test",
       "T_in_LAB",
-      "F_T_Resu"
+      "H_AIDS"
     ],
     "feature_count": 18,
     "sample_count": 78877,
-    "target": "H_AIDS"
+    "target": "F_T_Resu"
   },
   "performance": {
     "train_metrics": {},
     "test_metrics": {
-      "accuracy": 0.9883367139959433,
-      "precision": 0.9885743962607115,
-      "recall": 0.9994749278025729,
-      "f1": 0.993994778067885,
-      "roc_auc": 0.9904188301585912
+      "accuracy": 0.8003296146044625,
+      "precision": 0.6421392677674085,
+      "recall": 0.7558090409801437,
+      "f1": 0.694352804191733,
+      "roc_auc": 0.8307400835478042
     },
     "cross_validation": {
-      "mean_auc": 0.9902606350540695,
-      "std_auc": 0.000609922514709962
+      "mean_auc": 0.8299818915713738,
+      "std_auc": 0.0022179154881863646
     },
-    "feature_importance": {
-      "Sex": 0.004736259728534457,
-      "Age": 0.006038783584135968,
-      "Edu_lvl": 0.01328783368939141,
-      "Had_Sex": 0.009781299003942118,
-      "N_S_Part": 0.057622306013201605,
-      "Con_Use": 0.14504980167399406,
-      "R_Use_Con": 0.01537320683122565,
-      "R_SeA": 0.015030111078976659,
-      "R_Have_1SP": 0.030466033456256907,
-      "R_Nhave_Sex": 0.0665099514451849,
-      "HIV_Mosq": 0.24256548705370465,
-      "H_STI": 0.19069865457979207,
-      "H_O_STI": 0.047396833434469245,
-      "E_T_HIV": 0.11087523436608268,
-      "P_T_HIV": 0.017251067648817443,
-      "S_Test": 0.008469302388348247,
-      "T_in_LAB": 0.001038927823075767,
-      "F_T_Resu": 0.017808906200866247
-    },
+    "feature_importance": {},
     "best_params": {
-      "learning_rate": 0.1,
-      "max_depth": 5,
-      "n_estimators": 100,
-      "subsample": 1.0
+      "C": 100,
+      "class_weight": "balanced",
+      "max_iter": 1000,
+      "solver": "lbfgs"
     }
   },
-  "model_params": {},
+  "model_params": {
+    "coefficients": [
+      -0.15460734294970196,
+      0.0891422477424871,
+      0.08672394417650504,
+      0.05142771395208336,
+      -0.045059030814755575,
+      -0.39009440709605037,
+      0.13763299381653402,
+      -0.015151694475908244,
+      0.08064868946967353,
+      0.03226109904587089,
+      0.10624031363770789,
+      1.0384007872800987,
+      -0.17424655232314146,
+      0.04379374718635844,
+      -0.10808384137680813,
+      0.32021778388656535,
+      -0.9420804671871612,
+      0.35722313804344624
+    ],
+    "intercept": -0.24660298241792988
+  },
   "preprocessing": {
     "scaler": "StandardScaler",
     "encoders": {},
@@ -150,7 +153,7 @@
         "0": "No",
         "1": "Yes"
       },
-      "F_T_Resu": {
+      "H_AIDS": {
         "0": "Negative",
         "1": "Positive"
       }
