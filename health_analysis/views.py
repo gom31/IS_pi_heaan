@@ -178,7 +178,9 @@ class HealthAnalysisView(View):
 
                 # HE analysis start time
                 he_analysis_start = time.time()
-                result = analyzer.analyze_health_risk(user_inputs, use_he=True)
+                #result = analyzer.analyze_health_risk(user_inputs, use_he=True)
+                use_he = data.get('use_he', True)  
+                result = analyzer.analyze_health_risk(user_inputs, use_he=use_he)  
                 he_analysis_time = time.time() - he_analysis_start
 
                 # total time calc
