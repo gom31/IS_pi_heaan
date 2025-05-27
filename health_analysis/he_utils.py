@@ -6,6 +6,7 @@ import heaan_stat
 from heaan_stat import Context, Block
 import numpy as np
 import logging
+import time  # 추가된 import
 from pathlib import Path
 from .model_utils import load_model, validate_user_input
 
@@ -121,17 +122,28 @@ class HEHealthAnalyzer:
     def encrypt_user_data(self, user_inputs):
         """Preprocess and encrypt user input data"""
         try:
+            # preprocess_start time
+            preprocess_start = time.time()
             preprocessed_features = self._preprocess_user_input(user_inputs)
+            preprocess_time = time.time() - preprocess_start
 
-            # Encryption
+            # encrypt time
+            encrypt_start = time.time()
             encrypted_block = Block(
                 self.context,
                 encrypted=True,
                 data=preprocessed_features
             )
+            encrypt_time = time.time() - encrypt_start
 
             logger.info("User data encrypted successfully")
-            return encrypted_block
+            logger.info(f"  - Preprocessing time: {preprocess_time*1000:.2f}ms")
+            logger.info(f"  - Encryption time: {encrypt_time*1000:.2f}ms")
+            
+            return encrypted_block, {
+                'preprocess_time_ms': round(preprocess_time * 1000, 2),
+                'encryption_time_ms': round(encrypt_time * 1000, 2)
+            }
 
         except Exception as e:
             logger.error(f"Failed to encrypt user data: {e}")
@@ -140,33 +152,39 @@ class HEHealthAnalyzer:
     def compute_risk_probability_he(self, encrypted_data):
         """Compute risk probability using HE"""
         try:
+            # HE compute time
+            he_computation_start = time.time()
+            
             # Linear combination: w·x + b
+            linear_start = time.time()
             linear_result = Block(
                 self.context, 
                 encrypted=True, 
                 data=[float(self.model_intercept)]
             )
+            linear_init_time = time.time() - linear_start
 
             # Multiply each feature with weight and sum
+            multiplication_start = time.time()
             for i, coeff in enumerate(self.model_coefficients):
                 if abs(coeff) > 1e-10:
                     feature_i = encrypted_data >> i
                     weighted_feature = feature_i * float(coeff)
                     linear_result = linear_result + weighted_feature
+            multiplication_time = time.time() - multiplication_start
 
-            # Sigmoid approximation (cubic polynomial)
-            # sigmoid(x) ≈ 0.5 + 0.197*x - 0.004*x³ for x in [-2, 2]
-            
-            #x = linear_result
-            #x_squared = x * x
-            #x_cubed = x_squared * x
-
-            #sigmoid_result = Block(self.context, encrypted=True, data=[0.5])
-            #sigmoid_result = sigmoid_result + (x * 0.197)
-            #sigmoid_result = sigmoid_result - (x_cubed * 0.0004)
+            total_he_computation_time = time.time() - he_computation_start
 
             logger.info("HE risk probability computed successfully")
-            return linear_result #sigmoid_result
+            logger.info(f"  - Linear initialization: {linear_init_time*1000:.2f}ms")
+            logger.info(f"  - Feature multiplication: {multiplication_time*1000:.2f}ms")
+            logger.info(f"  - Total HE computation: {total_he_computation_time*1000:.2f}ms")
+            
+            return linear_result, {
+                'linear_init_time_ms': round(linear_init_time * 1000, 2),
+                'multiplication_time_ms': round(multiplication_time * 1000, 2),
+                'total_he_computation_time_ms': round(total_he_computation_time * 1000, 2)
+            }
 
         except Exception as e:
             logger.error(f"Failed to compute HE risk probability: {e}")
@@ -175,15 +193,24 @@ class HEHealthAnalyzer:
     def compute_risk_probability_direct(self, user_inputs):
         """Direct model-based risk prediction (for comparison)"""
         try:
+            # direct time
+            direct_start = time.time()
+            
             validated_features, errors = validate_user_input(user_inputs, self.feature_names)
 
             if errors:
                 logger.warning(f"Validation errors (proceeding): {errors}")
 
             probability = self.model_loader.predict(validated_features)
+            
+            direct_time = time.time() - direct_start
 
             logger.info(f"Direct prediction: {probability:.4f}")
-            return probability
+            logger.info(f"  - Direct computation time: {direct_time*1000:.2f}ms")
+            
+            return probability, {
+                'direct_computation_time_ms': round(direct_time * 1000, 2)
+            }
 
         except Exception as e:
             logger.error(f"Failed to compute direct prediction: {e}")
@@ -192,14 +219,25 @@ class HEHealthAnalyzer:
     def decrypt_result(self, encrypted_result):
         """Decrypt and postprocess result"""
         try:
+            # decrypt time
+            decrypt_start = time.time()
             decrypted_result = encrypted_result.decrypt(inplace=False)
-            #probability = float(decrypted_result[0])
-            #probability = max(0.0, min(1.0, probability))
+            decrypt_time = time.time() - decrypt_start
+            
+            # post process time
+            postprocess_start = time.time()
             linear_value = float(decrypted_result[0])
             probability = 1 / (1 + np.exp(-linear_value))
+            postprocess_time = time.time() - postprocess_start
 
             logger.info(f"HE result decrypted: {probability:.4f}")
-            return probability
+            logger.info(f"  - Decryption time: {decrypt_time*1000:.2f}ms")
+            logger.info(f"  - Postprocessing time: {postprocess_time*1000:.2f}ms")
+            
+            return probability, {
+                'decryption_time_ms': round(decrypt_time * 1000, 2),
+                'postprocess_time_ms': round(postprocess_time * 1000, 2)
+            }
 
         except Exception as e:
             logger.error(f"Failed to decrypt result: {e}")
@@ -208,16 +246,36 @@ class HEHealthAnalyzer:
     def analyze_health_risk(self, user_inputs, use_he=True):
         """Complete health risk analysis pipeline"""
         try:
+            # total analysis time
+            analysis_start = time.time()
+            
             logger.info(f"Starting health risk analysis (HE: {use_he})...")
 
+            # timing info
+            timing_info = {}
+
             if use_he:
-                encrypted_data = self.encrypt_user_data(user_inputs)
-                encrypted_result = self.compute_risk_probability_he(encrypted_data)
-                risk_probability = self.decrypt_result(encrypted_result)
+                # HE times for steps
+                encrypted_data, encrypt_timing = self.encrypt_user_data(user_inputs)
+                timing_info.update(encrypt_timing)
+                
+                encrypted_result, computation_timing = self.compute_risk_probability_he(encrypted_data)
+                timing_info.update(computation_timing)
+                
+                risk_probability, decrypt_timing = self.decrypt_result(encrypted_result)
+                timing_info.update(decrypt_timing)
+                
                 method = "Homomorphic Encryption"
+                
             else:
-                risk_probability = self.compute_risk_probability_direct(user_inputs)
+                # direct time
+                risk_probability, direct_timing = self.compute_risk_probability_direct(user_inputs)
+                timing_info.update(direct_timing)
                 method = "Direct Computation"
+
+            # total time analysis
+            total_analysis_time = time.time() - analysis_start
+            timing_info['total_analysis_time_ms'] = round(total_analysis_time * 1000, 2)
 
             result = {
                 'risk_probability': risk_probability,
@@ -227,10 +285,13 @@ class HEHealthAnalyzer:
                 'model_info': {
                     'type': self.model_loader.metadata['model_info']['type'],
                     'performance': self.model_performance
-                }
+                },
+                'timing_info': timing_info  
             }
 
             logger.info(f"Analysis completed: {risk_probability:.4f} ({method})")
+            logger.info(f"Total analysis time: {total_analysis_time*1000:.2f}ms")
+            
             return result
 
         except Exception as e:
