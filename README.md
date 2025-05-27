@@ -149,3 +149,46 @@ python3 model_statbility_analyzer.py
 # Security Test
 bash# Run simple security demonstration
 python3 data_block_security_test.py
+
+# Performance Test 
+Test with Homomorphic Encryption (Secure & Slow)
+curl -X POST http://localhost:8000/health-analysis/ -H "Content-Type: application/json" -d '{"sex": 1, "age": 3, "edu_lvl": 2, "had_sex": 1, "n_s_part": 2, "con_use": 1, "r_use_con": 0, "r_sea": 1, "r_have_1sp": 0, "r_nhave_sex": 0, "hiv_mosq": 0, "h_sti": 1, "h_o_sti": 1, "e_t_hiv": 0, "p_t_hiv": 1, "s_test": 0, "t_in_lab": 0, "h_aids": 1, "use_he": true}'
+Test without Homomorphic Encryption (Fast & Direct)
+curl -X POST http://localhost:8000/health-analysis/ -H "Content-Type: application/json" -d '{"sex": 1, "age": 3, "edu_lvl": 2, "had_sex": 1, "n_s_part": 2, "con_use": 1, "r_use_con": 0, "r_sea": 1, "r_have_1sp": 0, "r_nhave_sex": 0, "hiv_mosq": 0, "h_sti": 1, "h_o_sti": 1, "e_t_hiv": 0, "p_t_hiv": 1, "s_test": 0, "t_in_lab": 0, "h_aids": 1, "use_he": false}'
+Test with Default Settings (HE Enabled)
+curl -X POST http://localhost:8000/health-analysis/ -H "Content-Type: application/json" -d '{"sex": 1, "age": 3, "edu_lvl": 2, "had_sex": 1, "n_s_part": 2, "con_use": 1, "r_use_con": 0, "r_sea": 1, "r_have_1sp": 0, "r_nhave_sex": 0, "hiv_mosq": 0, "h_sti": 1, "h_o_sti": 1, "e_t_hiv": 0, "p_t_hiv": 1, "s_test": 0, "t_in_lab": 0, "h_aids": 1}'
+📊 Expected Response Format
+With HE (use_he: true)
+json{
+  "success": true,
+  "data": {
+    "risk_probability": 0.65,
+    "method": "Homomorphic Encryption",
+    "timing_info": {
+      "encryption_time_ms": 45.67,
+      "computation_time_ms": 102.01,
+      "decryption_time_ms": 23.45
+    }
+  },
+  "performance_metrics": {
+    "total_time_ms": 198.76,
+    "analysis_time_ms": 174.70,
+    "method": "HE"
+  }
+}
+Without HE (use_he: false)
+json{
+  "success": true,
+  "data": {
+    "risk_probability": 0.65,
+    "method": "Direct Computation",
+    "timing_info": {
+      "direct_computation_time_ms": 2.34
+    }
+  },
+  "performance_metrics": {
+    "total_time_ms": 25.43,
+    "analysis_time_ms": 2.34,
+    "method": "Direct"
+  }
+}
