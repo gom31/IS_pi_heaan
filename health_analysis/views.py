@@ -7,6 +7,7 @@ from django.conf import settings
 import json
 import logging
 import traceback
+import time  
 from datetime import datetime
 
 logger = logging.getLogger(__name__)
@@ -74,7 +75,13 @@ class HealthAnalysisView(View):
 
     def post(self, request):
         """Perform risk analysis"""
+        # total start time
+        total_start_time = time.time()
+        
         try:
+            # data validation start
+            validation_start = time.time()
+            
             # Check Content-Type
             if request.content_type != 'application/json':
                 return JsonResponse({
@@ -155,6 +162,9 @@ class HealthAnalysisView(View):
                     'message': 'Input data validation failed.'
                 }, status=400)
 
+            # validataion time calc
+            validation_time = time.time() - validation_start
+
             # Perform homomorphic encryption analysis
             try:
                 analyzer = get_health_analyzer()
@@ -166,7 +176,13 @@ class HealthAnalysisView(View):
                         'message': 'Model is not loaded. Please train the model first.'
                     }, status=503)
 
+                # HE analysis start time
+                he_analysis_start = time.time()
                 result = analyzer.analyze_health_risk(user_inputs, use_he=True)
+                he_analysis_time = time.time() - he_analysis_start
+
+                # total time calc
+                total_time = time.time() - total_start_time
 
                 logger.info(f"Analysis completed for user input: {user_inputs}")
 
@@ -174,7 +190,14 @@ class HealthAnalysisView(View):
                     'success': True,
                     'data': result,
                     'message': 'Analysis completed successfully.',
-                    'timestamp': datetime.now().isoformat()
+                    'timestamp': datetime.now().isoformat(),
+                    'performance_metrics': {
+                        'total_time_ms': round(total_time * 1000, 2),
+                        'validation_time_ms': round(validation_time * 1000, 2),
+                        'he_analysis_time_ms': round(he_analysis_time * 1000, 2),
+                        'he_breakdown': result.get('timing_info', {}) if isinstance(result, dict) else {},
+                        'processing_overhead_percent': round((he_analysis_time / total_time) * 100, 1) if total_time > 0 else 0
+                    }
                 })
 
             except Exception as analysis_error:
@@ -448,6 +471,8 @@ class HealthTestView(View):
 
     def post(self, request):
         """Perform analysis with test data"""
+        test_start_time = time.time()
+        
         test_data = {
             'sex': 1,           # Male
             'age': 3,           # 25-29 years
@@ -485,14 +510,23 @@ class HealthTestView(View):
                     ]
                 }, status=503)
 
+            # test analysis time
+            analysis_start = time.time()
             result = analyzer.analyze_health_risk(test_data, use_he=True)
+            analysis_time = time.time() - analysis_start
+            
+            total_test_time = time.time() - test_start_time
 
             return JsonResponse({
                 'success': True,
                 'data': result,
                 'test_input': test_data,
                 'message': 'Test analysis completed successfully.',
-                'note': 'This is a test analysis using predefined data for development purposes.'
+                'note': 'This is a test analysis using predefined data for development purposes.',
+                'test_performance': {
+                    'total_time_ms': round(total_test_time * 1000, 2),
+                    'analysis_time_ms': round(analysis_time * 1000, 2)
+                }
             })
 
         except Exception as e:
