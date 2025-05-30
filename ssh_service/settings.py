@@ -53,8 +53,6 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-
-# 허용 호스트
 ALLOWED_HOSTS = ['*']
 
 ROOT_URLCONF = 'ssh_service.urls'
@@ -137,11 +135,11 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# CORS settings (개발용)
+# CORS settings (for dev)
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = True
 
-# REST Framework 설정
+# REST Framework config
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.AllowAny',
@@ -154,7 +152,6 @@ REST_FRAMEWORK = {
     ],
 }
 
-# 로깅 설정
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
@@ -195,21 +192,21 @@ LOGGING = {
     },
 }
 
-# 로그 디렉토리 생성
+# log dir confg
 os.makedirs(BASE_DIR / 'logs', exist_ok=True)
 
-# 캐시 설정 (개발용)
+# cache config (dev)
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
     }
 }
 
-# 세션 설정 (실제로는 사용하지 않지만 Django 요구사항)
-SESSION_COOKIE_AGE = 3600  # 1시간
+# session config (not used but Django requirement)
+SESSION_COOKIE_AGE = 3600  # 1 hour
 SESSION_SAVE_EVERY_REQUEST = False
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
-# CSRF 설정
-CSRF_COOKIE_SECURE = False  # 개발용, HTTPS 환경에서는 True
+# CSRF config
+CSRF_COOKIE_SECURE = False  # dev, true for HTTP env
 CSRF_TRUSTED_ORIGINS = ['http://localhost:8000', 'http://127.0.0.1:8000']

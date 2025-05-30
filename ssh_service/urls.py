@@ -21,13 +21,13 @@ from django.conf.urls.static import static
 from django.views.generic import RedirectView
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls),  
     path('health/', include('health_analysis.urls')),
-    path('api/health/', include('health_analysis.urls')),
+    #path('api/health/', include('health_analysis.urls')),
     path('', RedirectView.as_view(url='/health/', permanent=True)),
 ]
 
-# 개발 환경에서 정적 파일 서빙
+# (dev) static file serving
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
